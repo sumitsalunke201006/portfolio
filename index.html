@@ -73,9 +73,22 @@ h2{font-weight:600;font-size:clamp(2rem,5.2vw,4rem);line-height:1.08;letter-spac
 #rail::before{content:"";position:absolute;right:4px;top:-8px;bottom:-8px;width:1px;background:linear-gradient(rgba(255,200,107,.35),rgba(255,200,107,.08))}
 @media(max-width:900px){#rail{display:none}}
 
+
+.tint{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity 1.8s ease}
+
+
+.socials{display:flex;gap:clamp(14px,3vw,28px);justify-content:center;flex-wrap:wrap;margin-top:26px}
+.socials a{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:#ffe8d0;opacity:.65;text-decoration:none;border-bottom:1px solid transparent;padding-bottom:3px;transition:all .3s}
+.socials a:hover{opacity:1;color:#ffc86b;border-color:#ffc86b}
+
 </style></head>
 <body>
 <canvas id="cv" aria-hidden="true">
+<div class="tint" data-t="about" style="background:linear-gradient(180deg,rgba(48,18,92,.38),rgba(24,10,48,.28))"></div>
+<div class="tint" data-t="work" style="background:linear-gradient(180deg,rgba(8,12,48,.50),rgba(10,8,36,.38))"></div>
+<div class="tint" data-t="services" style="background:linear-gradient(180deg,rgba(34,12,72,.42),rgba(16,8,40,.32))"></div>
+<div class="tint" data-t="contact" style="background:linear-gradient(180deg,rgba(96,32,72,.30),rgba(140,60,44,.22))"></div>
+
 <div id="shade" aria-hidden="true"></div>
 <nav id="rail" aria-hidden="true">
 <a href="#about" data-s="about"><i></i><span>01 · Studio</span></a>
@@ -112,6 +125,14 @@ h2{font-weight:600;font-size:clamp(2rem,5.2vw,4rem);line-height:1.08;letter-spac
 <section class="sc ct" id="contact"><span class="ch rv">Chapter 04 · The Destination</span><h2 class="rv">Your business deserves this.</h2>
   <a class="ml rv" href="mailto:getascend.support@gmail.com">getascend.support@gmail.com</a>
   <div class="cta rv" style="margin-top:0"><a class="wb" href="mailto:getascend.support@gmail.com">Email me</a><a class="wb o" href="https://github.com/sumitsalunke201006" target="_blank" rel="noopener">GitHub</a></div>
+<!-- ═══ SOCIAL LINKS — fill your usernames/URLs here later ═══ -->
+<div class="socials rv">
+<a id="soc-linkedin" href="#" target="_blank" rel="noopener">LinkedIn</a>
+<a id="soc-instagram" href="#" target="_blank" rel="noopener">Instagram</a>
+<a id="soc-tiktok" href="#" target="_blank" rel="noopener">TikTok</a>
+<a id="soc-x" href="#" target="_blank" rel="noopener">X</a>
+<a id="soc-youtube" href="#" target="_blank" rel="noopener">YouTube</a>
+</div>
   <p class="ft">© 2026 Built by Sumit Salunke</p></section>
 </main>
 <script>
@@ -217,15 +238,21 @@ build();requestAnimationFrame(frame);
 (function(){
   var links={};
   document.querySelectorAll('#rail a').forEach(function(a){links[a.getAttribute('data-s')]=a;});
+  var tints={};
+  document.querySelectorAll('.tint').forEach(function(d){tints[d.getAttribute('data-t')]=d;});
+  function setTint(id){
+    Object.keys(tints).forEach(function(k){tints[k].style.opacity=(k===id)?'1':'0';});
+  }
   var io=new IntersectionObserver(function(es){
     es.forEach(function(e){
       if(e.isIntersecting){
         Object.keys(links).forEach(function(k){links[k].classList.remove('on');});
         var l=links[e.target.id]; if(l)l.classList.add('on');
+        setTint(e.target.id==='top'?'':e.target.id);
       }
     });
   },{threshold:0.35});
-  ['about','work','services','contact'].forEach(function(id){
+  ['top','about','work','services','contact'].forEach(function(id){
     var el=document.getElementById(id); if(el)io.observe(el);
   });
 })();
