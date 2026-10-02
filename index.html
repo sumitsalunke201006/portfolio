@@ -81,6 +81,10 @@ h2{font-weight:600;font-size:clamp(2rem,5.2vw,4rem);line-height:1.08;letter-spac
 .socials a{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:#ffe8d0;opacity:.65;text-decoration:none;border-bottom:1px solid transparent;padding-bottom:3px;transition:all .3s}
 .socials a:hover{opacity:1;color:#ffc86b;border-color:#ffc86b}
 
+
+.mlogo{display:flex;justify-content:center;margin-bottom:20px;filter:drop-shadow(0 0 16px rgba(255,200,107,.35));animation:logofloat 6s ease-in-out infinite}
+@keyframes logofloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+
 </style></head>
 <body>
 <canvas id="cv" aria-hidden="true">
@@ -100,6 +104,13 @@ h2{font-weight:600;font-size:clamp(2rem,5.2vw,4rem);line-height:1.08;letter-spac
 <nav><b>SS</b><div class="m"><a href="#about">About</a><a href="#work">Work</a><a href="#services">Services</a></div><a class="cb" href="#contact">Contact</a></nav>
 <main>
 <section class="sc hero" id="top">
+  <div class="mlogo" aria-hidden="true">
+  <svg viewBox="0 0 64 64" width="56" height="56">
+  <circle cx="32" cy="32" r="29" fill="none" stroke="#ffc86b" stroke-width="2"/>
+  <circle cx="32" cy="32" r="23.5" fill="rgba(255,200,107,.07)" stroke="#ffc86b" stroke-width="1" opacity=".55"/>
+  <text x="32" y="39.5" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="19" font-style="italic" fill="#ffc86b">SS</text>
+  </svg>
+  </div>
   <h1 aria-label="Sumit Salunke"><span>SUMIT</span> <span>SALUNKE</span></h1>
   <p class="sub">Creative Developer &amp; Designer</p>
   <span class="bd"><i></i>Available for projects</span>
